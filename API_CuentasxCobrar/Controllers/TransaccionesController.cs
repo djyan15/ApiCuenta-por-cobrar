@@ -61,16 +61,16 @@ namespace API_CuentasxCobrar.Controllers
 
 
             };
-            try
-            {
-                Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_insertar @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).SingleOrDefault();
+            //try
+            //{
+                Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_insertar @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).SingleOrDefault();
  
 
-            }
-            catch (Exception ex)
-            {
-                return Json(new Transaciones());
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Json(new Transaciones());
+            //}
             return Json(Transaciones);
         }
         [Route("cxc/EditTrans")]
