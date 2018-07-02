@@ -13,6 +13,7 @@ namespace API_CuentasxCobrar
     
     public partial class Transacciones_insertar_Result
     {
+        public int id_Transaccion { get; set; }
         public string TipoDeMovimiento { get; set; }
         public string Descripcion { get; set; }
         public int NumeroDeDocumento { get; set; }

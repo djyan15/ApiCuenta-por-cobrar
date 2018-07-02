@@ -52,6 +52,13 @@
           <Property Name="Monto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Usuario">
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="contrasena" Type="varchar" MaxLength="25" />
+        </EntityType>-->
         <Association Name="FK__Transacci__id_Cl__29572725">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
@@ -76,51 +83,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AsientosContables_IdCliente">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
-          <End Role="AsientosContables" Type="Self.AsientosContables" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="id_Cliente" />
-            </Principal>
-            <Dependent Role="AsientosContables">
-              <PropertyRef Name="id_Cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="AsientosContables_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_Asiento" Type="int" Mode="In" />
-        </Function>
-        <Function Name="AsientosContables_Edita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_Asiento" Type="int" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="id_Cliente" Type="int" Mode="In" />
-          <Parameter Name="Cuenta" Type="varchar" Mode="In" />
-          <Parameter Name="TipoDeMovimiento" Type="char" Mode="In" />
-          <Parameter Name="Monto" Type="numeric" Mode="In" />
-        </Function>
-        <Function Name="AsientosContables_Elimina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_Asiento" Type="int" Mode="In" />
-        </Function>
-        <Function Name="AsientosContables_insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="id_Cliente" Type="int" Mode="In" />
-          <Parameter Name="Cuenta" Type="varchar" Mode="In" />
-          <Parameter Name="TipoDeMovumiento" Type="char" Mode="In" />
-          <Parameter Name="Monto" Type="numeric" Mode="In" />
-        </Function>
-        <Function Name="AsientosContables_Paging_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PageIndex" Type="int" Mode="In" />
-          <Parameter Name="PageSize" Type="int" Mode="In" />
-          <Parameter Name="orderBy0" Type="varchar" Mode="In" />
-          <Parameter Name="orderByDirection0" Type="bit" Mode="In" />
-          <Parameter Name="id_Asiento" Type="int" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="TipoDeMovimiento" Type="char" Mode="In" />
-          <Parameter Name="id_Cliente" Type="int" Mode="In" />
-          <Parameter Name="Fecha_Desde" Type="varchar" Mode="In" />
-          <Parameter Name="Fecha_Hasta" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="Clientes_consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Cliente" Type="int" Mode="In" />
         </Function>
@@ -146,7 +108,6 @@
           <Parameter Name="id_Cliente" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Cedula" Type="varchar" Mode="In" />
-          <Parameter Name="LimiteDeCredito" Type="int" Mode="In" />
         </Function>
         <Function Name="TipoDocumentos_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_TipoDocumento" Type="int" Mode="In" />
@@ -198,11 +159,16 @@
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="orderBy0" Type="varchar" Mode="In" />
           <Parameter Name="orderByDirection0" Type="bit" Mode="In" />
-          <Parameter Name="id_Transaccion" Type="int" Mode="In" />
           <Parameter Name="TipoDeMovimiento" Type="char" Mode="In" />
           <Parameter Name="id_TipoDocumento" Type="int" Mode="In" />
           <Parameter Name="Fecha_Desde" Type="varchar" Mode="In" />
           <Parameter Name="Fecha_Hasta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usuario_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="contrasena" Type="varchar" Mode="In" />
+          <Parameter Name="logeado" Type="int" Mode="InOut" />
+          <Parameter Name="mensaje" Type="varchar" Mode="InOut" />
         </Function>
         <EntityContainer Name="CXCModelStoreContainer">
           <EntitySet Name="AsientosContables" EntityType="Self.AsientosContables" Schema="dbo" store:Type="Tables" />
@@ -216,10 +182,6 @@
           <AssociationSet Name="FK__Transacci__id_Ti__286302EC" Association="Self.FK__Transacci__id_Ti__286302EC">
             <End Role="TipoDocumentos" EntitySet="TipoDocumentos" />
             <End Role="Transacciones" EntitySet="Transacciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AsientosContables_IdCliente" Association="Self.FK_AsientosContables_IdCliente">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="AsientosContables" EntitySet="AsientosContables" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -239,7 +201,6 @@
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_AsientosContables_IdCliente" FromRole="AsientosContables" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -251,7 +212,6 @@
           <Property Name="LimiteDeCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AsientosContables" Relationship="Self.FK_AsientosContables_IdCliente" FromRole="Clientes" ToRole="AsientosContables" />
           <NavigationProperty Name="Transacciones" Relationship="Self.FK__Transacci__id_Cl__29572725" FromRole="Clientes" ToRole="Transacciones" />
         </EntityType>
         <EntityType Name="TipoDocumento">
@@ -280,18 +240,6 @@
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Transacci__id_Cl__29572725" FromRole="Transacciones" ToRole="Clientes" />
           <NavigationProperty Name="TipoDocumento" Relationship="Self.FK__Transacci__id_Ti__286302EC" FromRole="Transacciones" ToRole="TipoDocumentos" />
         </EntityType>
-        <Association Name="FK_AsientosContables_IdCliente">
-          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
-          <End Role="AsientosContables" Type="Self.AsientosContable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="id_Cliente" />
-            </Principal>
-            <Dependent Role="AsientosContables">
-              <PropertyRef Name="id_Cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Transacci__id_Cl__29572725">
           <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Transacciones" Type="Self.Transaccione" Multiplicity="*" />
@@ -316,15 +264,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CXCEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CXCEntitie" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AsientosContables" EntityType="Self.AsientosContable" />
           <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="TipoDocumentos" EntityType="Self.TipoDocumento" />
           <EntitySet Name="Transacciones" EntityType="Self.Transaccione" />
-          <AssociationSet Name="FK_AsientosContables_IdCliente" Association="Self.FK_AsientosContables_IdCliente">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="AsientosContables" EntitySet="AsientosContables" />
-          </AssociationSet>
           <AssociationSet Name="FK__Transacci__id_Cl__29572725" Association="Self.FK__Transacci__id_Cl__29572725">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Transacciones" EntitySet="Transacciones" />
@@ -333,39 +277,6 @@
             <End Role="TipoDocumentos" EntitySet="TipoDocumentos" />
             <End Role="Transacciones" EntitySet="Transacciones" />
           </AssociationSet>
-          <FunctionImport Name="AsientosContables_Consulta" ReturnType="Collection(CXCModel.AsientosContables_Consulta_Result)">
-            <Parameter Name="id_Asiento" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AsientosContables_Edita" ReturnType="Collection(CXCModel.AsientosContables_Edita_Result)">
-            <Parameter Name="id_Asiento" Mode="In" Type="Int32" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
-            <Parameter Name="Cuenta" Mode="In" Type="String" />
-            <Parameter Name="TipoDeMovimiento" Mode="In" Type="String" />
-            <Parameter Name="Monto" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="AsientosContables_Elimina">
-            <Parameter Name="id_Asiento" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AsientosContables_insertar" ReturnType="Collection(CXCModel.AsientosContables_insertar_Result)">
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
-            <Parameter Name="Cuenta" Mode="In" Type="String" />
-            <Parameter Name="TipoDeMovumiento" Mode="In" Type="String" />
-            <Parameter Name="Monto" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="AsientosContables_Paging_Consulta">
-            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
-            <Parameter Name="PageSize" Mode="In" Type="Int32" />
-            <Parameter Name="orderBy0" Mode="In" Type="String" />
-            <Parameter Name="orderByDirection0" Mode="In" Type="Boolean" />
-            <Parameter Name="id_Asiento" Mode="In" Type="Int32" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TipoDeMovimiento" Mode="In" Type="String" />
-            <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
-            <Parameter Name="Fecha_Desde" Mode="In" Type="String" />
-            <Parameter Name="Fecha_Hasta" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="Clientes_consulta" ReturnType="Collection(CXCModel.Clientes_consulta_Result)">
             <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -391,7 +302,6 @@
             <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Cedula" Mode="In" Type="String" />
-            <Parameter Name="LimiteDeCredito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="TipoDocumentos_Consulta" ReturnType="Collection(CXCModel.TipoDocumentos_Consulta_Result)">
             <Parameter Name="id_TipoDocumento" Mode="In" Type="Int32" />
@@ -443,48 +353,32 @@
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="orderBy0" Mode="In" Type="String" />
             <Parameter Name="orderByDirection0" Mode="In" Type="Boolean" />
-            <Parameter Name="id_Transaccion" Mode="In" Type="Int32" />
             <Parameter Name="TipoDeMovimiento" Mode="In" Type="String" />
             <Parameter Name="id_TipoDocumento" Mode="In" Type="Int32" />
             <Parameter Name="Fecha_Desde" Mode="In" Type="String" />
             <Parameter Name="Fecha_Hasta" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Usuario_Login">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
+            <Parameter Name="logeado" Mode="InOut" Type="Int32" />
+            <Parameter Name="mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="AsientosContables_Consulta_Result">
-          <Property Type="Int32" Name="id_Asiento" Nullable="false" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
-          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
-          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="AsientosContables_Edita_Result">
-          <Property Type="Int32" Name="id_Asiento" Nullable="false" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
-          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
-          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="AsientosContables_insertar_Result">
-          <Property Type="Int32" Name="id_Asiento" Nullable="false" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
-          <Property Type="String" Name="Cuenta" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
-          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
-        </ComplexType>
         <ComplexType Name="Clientes_consulta_Result">
+          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="Cedula" Nullable="false" MaxLength="11" />
           <Property Type="Decimal" Name="LimiteDeCredito" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="Clientes_Edita_Result">
+          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="Cedula" Nullable="false" MaxLength="11" />
           <Property Type="Decimal" Name="LimiteDeCredito" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="Clientes_insertar_Result">
+          <Property Type="Int32" Name="id_Cliente" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="Cedula" Nullable="false" MaxLength="11" />
           <Property Type="Decimal" Name="LimiteDeCredito" Nullable="false" Precision="18" Scale="2" />
@@ -502,6 +396,7 @@
           <Property Type="String" Name="CuentaContable" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="Transacciones_Consulta_Result">
+          <Property Type="Int32" Name="id_Transaccion" Nullable="false" />
           <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="NumeroDeDocumento" Nullable="false" />
@@ -510,6 +405,7 @@
           <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="Transacciones_Edita_Result">
+          <Property Type="Int32" Name="id_Transaccion" Nullable="false" />
           <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="NumeroDeDocumento" Nullable="false" />
@@ -518,6 +414,7 @@
           <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="Transacciones_insertar_Result">
+          <Property Type="Int32" Name="id_Transaccion" Nullable="false" />
           <Property Type="String" Name="TipoDeMovimiento" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="NumeroDeDocumento" Nullable="false" />
@@ -530,7 +427,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntities5">
+        <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntitie">
           <EntitySetMapping Name="AsientosContables">
             <EntityTypeMapping TypeName="CXCModel.AsientosContable">
               <MappingFragment StoreEntitySet="AsientosContables">
@@ -582,47 +479,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AsientosContables_Consulta" FunctionName="CXCModel.Store.AsientosContables_Consulta">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CXCModel.AsientosContables_Consulta_Result">
-                <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
-                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
-                <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AsientosContables_Edita" FunctionName="CXCModel.Store.AsientosContables_Edita">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CXCModel.AsientosContables_Edita_Result">
-                <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
-                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
-                <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AsientosContables_Elimina" FunctionName="CXCModel.Store.AsientosContables_Elimina" />
-          <FunctionImportMapping FunctionImportName="AsientosContables_insertar" FunctionName="CXCModel.Store.AsientosContables_insertar">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CXCModel.AsientosContables_insertar_Result">
-                <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
-                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
-                <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AsientosContables_Paging_Consulta" FunctionName="CXCModel.Store.AsientosContables_Paging_Consulta" />
           <FunctionImportMapping FunctionImportName="Clientes_consulta" FunctionName="CXCModel.Store.Clientes_consulta">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Clientes_consulta_Result">
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -632,6 +492,7 @@
           <FunctionImportMapping FunctionImportName="Clientes_Edita" FunctionName="CXCModel.Store.Clientes_Edita">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Clientes_Edita_Result">
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -642,6 +503,7 @@
           <FunctionImportMapping FunctionImportName="Clientes_insertar" FunctionName="CXCModel.Store.Clientes_insertar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Clientes_insertar_Result">
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -678,6 +540,7 @@
           <FunctionImportMapping FunctionImportName="Transacciones_Consulta" FunctionName="CXCModel.Store.Transacciones_Consulta">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Transacciones_Consulta_Result">
+                <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
                 <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
@@ -690,6 +553,7 @@
           <FunctionImportMapping FunctionImportName="Transacciones_Edita" FunctionName="CXCModel.Store.Transacciones_Edita">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Transacciones_Edita_Result">
+                <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
                 <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
@@ -703,6 +567,7 @@
           <FunctionImportMapping FunctionImportName="Transacciones_insertar" FunctionName="CXCModel.Store.Transacciones_insertar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CXCModel.Transacciones_insertar_Result">
+                <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
                 <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
@@ -713,6 +578,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Transaciones_Paging_Consulta" FunctionName="CXCModel.Store.Transaciones_Paging_Consulta" />
+          <FunctionImportMapping FunctionImportName="Usuario_Login" FunctionName="CXCModel.Store.Usuario_Login" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

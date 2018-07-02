@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API_CuentasxCobrar.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,10 +12,11 @@ namespace API_CuentasxCobrar.Controllers
 {
     public class TransaccionesController : ApiController
     {
-        private readonly CXCEntities5 db = new CXCEntities5();
+        private readonly CXCEntitie db = new CXCEntitie();
 
+        
         [Route("cxc/GetTransaciones")]
-        public JsonResult<List<Transaciones>> GetTransacciones([FromUri]Transaciones t)
+        public JsonResult<List<Transacciones>> GetTransacciones([FromUri]Transacciones t)
         {
 
             List<SqlParameter> parametros = new List<SqlParameter>{
@@ -29,26 +31,26 @@ namespace API_CuentasxCobrar.Controllers
                   new SqlParameter("Fecha_Hasta",t.Fecha_Hasta ?? "")
 
             };
-            var Transaciones = db.Database.SqlQuery<Transaciones>("Transaciones_Paging_Consulta @PageIndex, @PageSize, @orderBy0, @orderByDirection0, @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @Fecha_Desde, @Fecha_Hasta", parametros.ToArray()).ToList();
-
-            return Json(Transaciones);
+            var Transacciones = db.Database.SqlQuery<Transacciones>("Transaciones_Paging_Consulta @PageIndex, @PageSize, @orderBy0, @orderByDirection0, @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @Fecha_Desde, @Fecha_Hasta", parametros.ToArray()).ToList();
+         
+            return Json(Transacciones);
         }
         [Route("cxc/GetTransId")]
-        public JsonResult<List<Transaciones>> GetTransId(int id_Transaccion)
+        public JsonResult<List<Transacciones>> GetTransId(int id_Transaccion)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@id_Transaccion", id_Transaccion),
             };
-            var Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_Consulta @id_Transaccion", parametros.ToArray()).ToList();
+            var Transacciones = db.Database.SqlQuery<Transacciones>("Transacciones_Consulta @id_Transaccion", parametros.ToArray()).ToList();
 
-            return Json(Transaciones);
+            return Json(Transacciones);
         }
         [Route("cxc/SetTrans")]
         [HttpPost]
-        public JsonResult<Transaciones> SetTrans(Transaciones t)
+        public JsonResult<Transacciones> SetTrans(Transacciones t)
         {
-            Transaciones Transaciones = new Transaciones();
+            Transacciones Transaciones = new Transacciones();
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 
@@ -63,19 +65,19 @@ namespace API_CuentasxCobrar.Controllers
             };
             try
             {
-                Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_insertar @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).SingleOrDefault();
+                Transaciones = db.Database.SqlQuery<Transacciones>("Transacciones_insertar @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).SingleOrDefault();
  
 
             }
             catch (Exception ex)
             {
-                return Json(new Transaciones());
+                return Json(new Transacciones());
             }
             return Json(Transaciones);
         }
         [Route("cxc/EditTrans")]
         [HttpPut]
-        public JsonResult<List<Transaciones>> EditTrans([FromBody]Transaciones t)
+        public JsonResult<List<Transacciones>> EditTrans([FromBody]Transacciones t)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
@@ -87,17 +89,17 @@ namespace API_CuentasxCobrar.Controllers
                 new SqlParameter("Monto", Convert.ToInt32(t.Monto)),
                      new SqlParameter("Fecha", t.Fecha ?? "" )
             };
-            var Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_Edita @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).ToList();
+            var Transaciones = db.Database.SqlQuery<Transacciones>("Transacciones_Edita @id_Transaccion, @TipoDeMovimiento, @id_TipoDocumento, @NumeroDeDocumento, @id_Cliente, @Monto, @Fecha", parametros.ToArray()).ToList();
             return Json(Transaciones);
         }
         [Route("cxc/DeleteTrans")]
-        public JsonResult<List<Transaciones>> DeleteTrans(int id_Transaccion)
+        public JsonResult<List<Transacciones>> DeleteTrans(int id_Transaccion)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 new SqlParameter("@id_Transaccion", id_Transaccion)
             };
-            var Transaciones = db.Database.SqlQuery<Transaciones>("Transacciones_Elimina @id_Transaccion", parametros.ToArray()).ToList();
+            var Transaciones = db.Database.SqlQuery<Transacciones>("Transacciones_Elimina @id_Transaccion", parametros.ToArray()).ToList();
 
             return Json(Transaciones);
         }

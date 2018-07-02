@@ -11,32 +11,12 @@ namespace API_CuentasxCobrar
 {
     using System;
     using System.Collections.Generic;
-    public class Clientes
-    {
-        public int? PageIndex { get; set; }
-        public int? PageSize { get; set; }
-        public string orderBy0 { get; set; }
-        public byte orderByDirection0 { get; set; }
-
-
-        public int? id_Cliente { get; set; }
-        public string Nombre { get; set; }
-        public string Cedula { get; set; }
-        public decimal LimiteDeCredito { get; set; }
-        public string Estado { get; set; }
-        public string Fecha { get; set; }
-
-        public int Linea { get; set; }
-        public int Ultima_Linea { get; set; }
-        public int Cantidad_Registros { get; set; }
-
-    }
+    
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()
         {
-            this.AsientosContables = new HashSet<AsientosContable>();
             this.Transacciones = new HashSet<Transaccione>();
         }
     
@@ -47,8 +27,6 @@ namespace API_CuentasxCobrar
         public string Estado { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AsientosContable> AsientosContables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaccione> Transacciones { get; set; }
     }

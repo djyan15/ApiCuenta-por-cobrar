@@ -22,7 +22,5 @@ namespace API_CuentasxCobrar
         public System.DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
         public string Estado { get; set; }
-    
-        public virtual Cliente Cliente { get; set; }
     }
 }

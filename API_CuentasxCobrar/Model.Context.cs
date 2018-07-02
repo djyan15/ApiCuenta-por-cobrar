@@ -15,10 +15,10 @@ namespace API_CuentasxCobrar
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class CXCEntities5 : DbContext
+    public partial class CXCEntitie : DbContext
     {
-        public CXCEntities5()
-            : base("name=CXCEntities5")
+        public CXCEntitie()
+            : base("name=CXCEntitie")
         {
         }
     
@@ -31,123 +31,6 @@ namespace API_CuentasxCobrar
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public virtual DbSet<Transaccione> Transacciones { get; set; }
-    
-        public virtual ObjectResult<AsientosContables_Consulta_Result> AsientosContables_Consulta(Nullable<int> id_Asiento)
-        {
-            var id_AsientoParameter = id_Asiento.HasValue ?
-                new ObjectParameter("id_Asiento", id_Asiento) :
-                new ObjectParameter("id_Asiento", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AsientosContables_Consulta_Result>("AsientosContables_Consulta", id_AsientoParameter);
-        }
-    
-        public virtual ObjectResult<AsientosContables_Edita_Result> AsientosContables_Edita(Nullable<int> id_Asiento, string descripcion, Nullable<int> id_Cliente, string cuenta, string tipoDeMovimiento, Nullable<decimal> monto)
-        {
-            var id_AsientoParameter = id_Asiento.HasValue ?
-                new ObjectParameter("id_Asiento", id_Asiento) :
-                new ObjectParameter("id_Asiento", typeof(int));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var id_ClienteParameter = id_Cliente.HasValue ?
-                new ObjectParameter("id_Cliente", id_Cliente) :
-                new ObjectParameter("id_Cliente", typeof(int));
-    
-            var cuentaParameter = cuenta != null ?
-                new ObjectParameter("Cuenta", cuenta) :
-                new ObjectParameter("Cuenta", typeof(string));
-    
-            var tipoDeMovimientoParameter = tipoDeMovimiento != null ?
-                new ObjectParameter("TipoDeMovimiento", tipoDeMovimiento) :
-                new ObjectParameter("TipoDeMovimiento", typeof(string));
-    
-            var montoParameter = monto.HasValue ?
-                new ObjectParameter("Monto", monto) :
-                new ObjectParameter("Monto", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AsientosContables_Edita_Result>("AsientosContables_Edita", id_AsientoParameter, descripcionParameter, id_ClienteParameter, cuentaParameter, tipoDeMovimientoParameter, montoParameter);
-        }
-    
-        public virtual int AsientosContables_Elimina(Nullable<int> id_Asiento)
-        {
-            var id_AsientoParameter = id_Asiento.HasValue ?
-                new ObjectParameter("id_Asiento", id_Asiento) :
-                new ObjectParameter("id_Asiento", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AsientosContables_Elimina", id_AsientoParameter);
-        }
-    
-        public virtual ObjectResult<AsientosContables_insertar_Result> AsientosContables_insertar(string descripcion, Nullable<int> id_Cliente, string cuenta, string tipoDeMovumiento, Nullable<decimal> monto)
-        {
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var id_ClienteParameter = id_Cliente.HasValue ?
-                new ObjectParameter("id_Cliente", id_Cliente) :
-                new ObjectParameter("id_Cliente", typeof(int));
-    
-            var cuentaParameter = cuenta != null ?
-                new ObjectParameter("Cuenta", cuenta) :
-                new ObjectParameter("Cuenta", typeof(string));
-    
-            var tipoDeMovumientoParameter = tipoDeMovumiento != null ?
-                new ObjectParameter("TipoDeMovumiento", tipoDeMovumiento) :
-                new ObjectParameter("TipoDeMovumiento", typeof(string));
-    
-            var montoParameter = monto.HasValue ?
-                new ObjectParameter("Monto", monto) :
-                new ObjectParameter("Monto", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AsientosContables_insertar_Result>("AsientosContables_insertar", descripcionParameter, id_ClienteParameter, cuentaParameter, tipoDeMovumientoParameter, montoParameter);
-        }
-    
-        public virtual int AsientosContables_Paging_Consulta(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, Nullable<int> id_Asiento, string descripcion, string tipoDeMovimiento, Nullable<int> id_Cliente, string fecha_Desde, string fecha_Hasta)
-        {
-            var pageIndexParameter = pageIndex.HasValue ?
-                new ObjectParameter("PageIndex", pageIndex) :
-                new ObjectParameter("PageIndex", typeof(int));
-    
-            var pageSizeParameter = pageSize.HasValue ?
-                new ObjectParameter("PageSize", pageSize) :
-                new ObjectParameter("PageSize", typeof(int));
-    
-            var orderBy0Parameter = orderBy0 != null ?
-                new ObjectParameter("orderBy0", orderBy0) :
-                new ObjectParameter("orderBy0", typeof(string));
-    
-            var orderByDirection0Parameter = orderByDirection0.HasValue ?
-                new ObjectParameter("orderByDirection0", orderByDirection0) :
-                new ObjectParameter("orderByDirection0", typeof(bool));
-    
-            var id_AsientoParameter = id_Asiento.HasValue ?
-                new ObjectParameter("id_Asiento", id_Asiento) :
-                new ObjectParameter("id_Asiento", typeof(int));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tipoDeMovimientoParameter = tipoDeMovimiento != null ?
-                new ObjectParameter("TipoDeMovimiento", tipoDeMovimiento) :
-                new ObjectParameter("TipoDeMovimiento", typeof(string));
-    
-            var id_ClienteParameter = id_Cliente.HasValue ?
-                new ObjectParameter("id_Cliente", id_Cliente) :
-                new ObjectParameter("id_Cliente", typeof(int));
-    
-            var fecha_DesdeParameter = fecha_Desde != null ?
-                new ObjectParameter("Fecha_Desde", fecha_Desde) :
-                new ObjectParameter("Fecha_Desde", typeof(string));
-    
-            var fecha_HastaParameter = fecha_Hasta != null ?
-                new ObjectParameter("Fecha_Hasta", fecha_Hasta) :
-                new ObjectParameter("Fecha_Hasta", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AsientosContables_Paging_Consulta", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_AsientoParameter, descripcionParameter, tipoDeMovimientoParameter, id_ClienteParameter, fecha_DesdeParameter, fecha_HastaParameter);
-        }
     
         public virtual ObjectResult<Clientes_consulta_Result> Clientes_consulta(Nullable<int> id_Cliente)
         {
@@ -205,7 +88,7 @@ namespace API_CuentasxCobrar
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Clientes_insertar_Result>("Clientes_insertar", nombreParameter, cedulaParameter, limiteDeCreditoParameter);
         }
     
-        public virtual int Clientes_pagging(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, Nullable<int> id_Cliente, string nombre, string cedula, Nullable<int> limiteDeCredito)
+        public virtual int Clientes_pagging(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, Nullable<int> id_Cliente, string nombre, string cedula)
         {
             var pageIndexParameter = pageIndex.HasValue ?
                 new ObjectParameter("PageIndex", pageIndex) :
@@ -235,11 +118,7 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("Cedula", cedula) :
                 new ObjectParameter("Cedula", typeof(string));
     
-            var limiteDeCreditoParameter = limiteDeCredito.HasValue ?
-                new ObjectParameter("LimiteDeCredito", limiteDeCredito) :
-                new ObjectParameter("LimiteDeCredito", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Clientes_pagging", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_ClienteParameter, nombreParameter, cedulaParameter, limiteDeCreditoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Clientes_pagging", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_ClienteParameter, nombreParameter, cedulaParameter);
         }
     
         public virtual ObjectResult<TipoDocumentos_Consulta_Result> TipoDocumentos_Consulta(Nullable<int> id_TipoDocumento)
@@ -395,7 +274,7 @@ namespace API_CuentasxCobrar
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_insertar_Result>("Transacciones_insertar", tipoDeMovimientoParameter, id_TipoDocumentoParameter, numeroDeDocumentoParameter, id_ClienteParameter, montoParameter);
         }
     
-        public virtual int Transaciones_Paging_Consulta(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, Nullable<int> id_Transaccion, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, string fecha_Desde, string fecha_Hasta)
+        public virtual int Transaciones_Paging_Consulta(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, string fecha_Desde, string fecha_Hasta)
         {
             var pageIndexParameter = pageIndex.HasValue ?
                 new ObjectParameter("PageIndex", pageIndex) :
@@ -413,10 +292,6 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("orderByDirection0", orderByDirection0) :
                 new ObjectParameter("orderByDirection0", typeof(bool));
     
-            var id_TransaccionParameter = id_Transaccion.HasValue ?
-                new ObjectParameter("id_Transaccion", id_Transaccion) :
-                new ObjectParameter("id_Transaccion", typeof(int));
-    
             var tipoDeMovimientoParameter = tipoDeMovimiento != null ?
                 new ObjectParameter("TipoDeMovimiento", tipoDeMovimiento) :
                 new ObjectParameter("TipoDeMovimiento", typeof(string));
@@ -433,7 +308,20 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("Fecha_Hasta", fecha_Hasta) :
                 new ObjectParameter("Fecha_Hasta", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transaciones_Paging_Consulta", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_TransaccionParameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, fecha_DesdeParameter, fecha_HastaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transaciones_Paging_Consulta", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, fecha_DesdeParameter, fecha_HastaParameter);
+        }
+    
+        public virtual int Usuario_Login(string username, string contrasena, ObjectParameter logeado, ObjectParameter mensaje)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usuario_Login", usernameParameter, contrasenaParameter, logeado, mensaje);
         }
     }
 }

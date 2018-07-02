@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntities4">
+  <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntitie">
     <EntitySetMapping Name="AsientosContables">
       <EntityTypeMapping TypeName="CXCModel.AsientosContable">
         <MappingFragment StoreEntitySet="AsientosContables">
@@ -55,6 +55,7 @@
     <FunctionImportMapping FunctionImportName="Clientes_consulta" FunctionName="CXCModel.Store.Clientes_consulta">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_consulta_Result">
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -64,6 +65,7 @@
     <FunctionImportMapping FunctionImportName="Clientes_Edita" FunctionName="CXCModel.Store.Clientes_Edita">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_Edita_Result">
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -74,6 +76,7 @@
     <FunctionImportMapping FunctionImportName="Clientes_insertar" FunctionName="CXCModel.Store.Clientes_insertar">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_insertar_Result">
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -107,6 +110,47 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="TipoDocumentos_Paging" FunctionName="CXCModel.Store.TipoDocumentos_Paging" />
+    <FunctionImportMapping FunctionImportName="Transacciones_Consulta" FunctionName="CXCModel.Store.Transacciones_Consulta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.Transacciones_Consulta_Result">
+          <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Transacciones_Edita" FunctionName="CXCModel.Store.Transacciones_Edita">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.Transacciones_Edita_Result">
+          <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Transacciones_Elimina" FunctionName="CXCModel.Store.Transacciones_Elimina" />
+    <FunctionImportMapping FunctionImportName="Transacciones_insertar" FunctionName="CXCModel.Store.Transacciones_insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.Transacciones_insertar_Result">
+          <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Transaciones_Paging_Consulta" FunctionName="CXCModel.Store.Transaciones_Paging_Consulta" />
+    <FunctionImportMapping FunctionImportName="Usuario_Login" FunctionName="CXCModel.Store.Usuario_Login" />
   </EntityContainerMapping>
 </Mapping>
