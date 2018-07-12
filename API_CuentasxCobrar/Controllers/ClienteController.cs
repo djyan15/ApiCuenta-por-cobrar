@@ -12,7 +12,7 @@ namespace API_CuentasxCobrar.Controllers
 {
     public class ClienteController : ApiController
     {
-        private readonly CXCEntities5 db = new CXCEntities5();
+        private readonly CXCEntities6 db = new CXCEntities6();
 
         [Route("CXC/GetCXC")]
         public JsonResult<List<Clientes>> GetClientes([FromUri]Clientes c)

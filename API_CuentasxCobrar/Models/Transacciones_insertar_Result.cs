@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     
-    public partial class TipoDocumentos_Inserta_Result
+    public partial class Transacciones_insertar_Result
     {
+        public int id_Transaccion { get; set; }
+        public string TipoDeMovimiento { get; set; }
+        public Nullable<int> id_TipoDocumento { get; set; }
         public string Descripcion { get; set; }
-        public string CuentaContable { get; set; }
+        public int NumeroDeDocumento { get; set; }
+        public string Fecha { get; set; }
+        public Nullable<int> id_Cliente { get; set; }
+        public string Nombre { get; set; }
+        public decimal Monto { get; set; }
     }
 }

@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     
-    public partial class Transacciones_Consulta_Result
+    public partial class Clientes_consulta_Result
     {
-        public string TipoDeMovimiento { get; set; }
-        public string Descripcion { get; set; }
-        public int NumeroDeDocumento { get; set; }
-        public System.DateTime Fecha { get; set; }
         public string Nombre { get; set; }
-        public decimal Monto { get; set; }
+        public string Cedula { get; set; }
+        public decimal LimiteDeCredito { get; set; }
     }
 }

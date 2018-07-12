@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     using System.Collections.Generic;

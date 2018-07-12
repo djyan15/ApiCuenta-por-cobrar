@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntitie">
+  <EntityContainerMapping StorageEntityContainer="CXCModelStoreContainer" CdmEntityContainer="CXCEntities6">
     <EntitySetMapping Name="AsientosContables">
       <EntityTypeMapping TypeName="CXCModel.AsientosContable">
         <MappingFragment StoreEntitySet="AsientosContables">
@@ -52,10 +52,47 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AsientosContables_Consulta" FunctionName="CXCModel.Store.AsientosContables_Consulta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.AsientosContables_Consulta_Result">
+          <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AsientosContables_Edita" FunctionName="CXCModel.Store.AsientosContables_Edita">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.AsientosContables_Edita_Result">
+          <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AsientosContables_Elimina" FunctionName="CXCModel.Store.AsientosContables_Elimina" />
+    <FunctionImportMapping FunctionImportName="AsientosContables_insertar" FunctionName="CXCModel.Store.AsientosContables_insertar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CXCModel.AsientosContables_insertar_Result">
+          <ScalarProperty Name="id_Asiento" ColumnName="id_Asiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AsientosContables_Paging_Consulta" FunctionName="CXCModel.Store.AsientosContables_Paging_Consulta" />
     <FunctionImportMapping FunctionImportName="Clientes_consulta" FunctionName="CXCModel.Store.Clientes_consulta">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_consulta_Result">
-          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -65,7 +102,6 @@
     <FunctionImportMapping FunctionImportName="Clientes_Edita" FunctionName="CXCModel.Store.Clientes_Edita">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_Edita_Result">
-          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -76,7 +112,6 @@
     <FunctionImportMapping FunctionImportName="Clientes_insertar" FunctionName="CXCModel.Store.Clientes_insertar">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CXCModel.Clientes_insertar_Result">
-          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="LimiteDeCredito" ColumnName="LimiteDeCredito" />
@@ -115,9 +150,11 @@
         <ComplexTypeMapping TypeName="CXCModel.Transacciones_Consulta_Result">
           <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
           <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="id_TipoDocumento" ColumnName="id_TipoDocumento" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
         </ComplexTypeMapping>
@@ -128,9 +165,11 @@
         <ComplexTypeMapping TypeName="CXCModel.Transacciones_Edita_Result">
           <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
           <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="id_TipoDocumento" ColumnName="id_TipoDocumento" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Fecha_trans" ColumnName="Fecha_trans" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
         </ComplexTypeMapping>
@@ -142,9 +181,11 @@
         <ComplexTypeMapping TypeName="CXCModel.Transacciones_insertar_Result">
           <ScalarProperty Name="id_Transaccion" ColumnName="id_Transaccion" />
           <ScalarProperty Name="TipoDeMovimiento" ColumnName="TipoDeMovimiento" />
+          <ScalarProperty Name="id_TipoDocumento" ColumnName="id_TipoDocumento" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="NumeroDeDocumento" ColumnName="NumeroDeDocumento" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
         </ComplexTypeMapping>

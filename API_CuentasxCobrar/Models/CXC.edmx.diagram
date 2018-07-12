@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a94fb2d865d044e9b885561c6727155d" Name="Diagram1">
+      <Diagram DiagramId="38d286a0cf8e4b26a9cd5c5f6e78feb2" Name="Diagram1">
         <EntityTypeShape EntityType="CXCModel.AsientosContable" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CXCModel.Cliente" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CXCModel.TipoDocumento" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />

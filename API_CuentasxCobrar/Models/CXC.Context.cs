@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     using System.Data.Entity;
@@ -15,10 +15,10 @@ namespace API_CuentasxCobrar
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class CXCEntities5 : DbContext
+    public partial class CXCEntities6 : DbContext
     {
-        public CXCEntities5()
-            : base("name=CXCEntities5")
+        public CXCEntities6()
+            : base("name=CXCEntities6")
         {
         }
     
@@ -323,16 +323,20 @@ namespace API_CuentasxCobrar
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TipoDocumentos_Paging", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_TipoDocumentoParameter, descripcionParameter, cuentaContableParameter);
         }
     
-        public virtual ObjectResult<Transacciones_Consulta_Result> Transacciones_Consulta(Nullable<int> id_Transaccion)
+        public virtual ObjectResult<Transacciones_Consulta_Result> Transacciones_Consulta(Nullable<int> id_Transaccion, Nullable<int> id_Clientes)
         {
             var id_TransaccionParameter = id_Transaccion.HasValue ?
                 new ObjectParameter("id_Transaccion", id_Transaccion) :
                 new ObjectParameter("id_Transaccion", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_Consulta_Result>("Transacciones_Consulta", id_TransaccionParameter);
+            var id_ClientesParameter = id_Clientes.HasValue ?
+                new ObjectParameter("id_Clientes", id_Clientes) :
+                new ObjectParameter("id_Clientes", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_Consulta_Result>("Transacciones_Consulta", id_TransaccionParameter, id_ClientesParameter);
         }
     
-        public virtual ObjectResult<Transacciones_Edita_Result> Transacciones_Edita(Nullable<int> id_Transaccion, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, Nullable<int> numeroDeDocumento, Nullable<int> id_Cliente, Nullable<decimal> monto)
+        public virtual ObjectResult<Transacciones_Edita_Result> Transacciones_Edita(Nullable<int> id_Transaccion, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, Nullable<int> numeroDeDocumento, Nullable<int> id_Cliente, Nullable<decimal> monto, string fecha)
         {
             var id_TransaccionParameter = id_Transaccion.HasValue ?
                 new ObjectParameter("id_Transaccion", id_Transaccion) :
@@ -358,7 +362,11 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("Monto", monto) :
                 new ObjectParameter("Monto", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_Edita_Result>("Transacciones_Edita", id_TransaccionParameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, numeroDeDocumentoParameter, id_ClienteParameter, montoParameter);
+            var fechaParameter = fecha != null ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_Edita_Result>("Transacciones_Edita", id_TransaccionParameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, numeroDeDocumentoParameter, id_ClienteParameter, montoParameter, fechaParameter);
         }
     
         public virtual int Transacciones_Elimina(Nullable<int> id_Transaccion)
@@ -370,7 +378,7 @@ namespace API_CuentasxCobrar
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transacciones_Elimina", id_TransaccionParameter);
         }
     
-        public virtual ObjectResult<Transacciones_insertar_Result> Transacciones_insertar(string tipoDeMovimiento, Nullable<int> id_TipoDocumento, Nullable<int> numeroDeDocumento, Nullable<int> id_Cliente, Nullable<decimal> monto)
+        public virtual ObjectResult<Transacciones_insertar_Result> Transacciones_insertar(string tipoDeMovimiento, Nullable<int> id_TipoDocumento, Nullable<int> numeroDeDocumento, Nullable<int> id_Cliente, Nullable<decimal> monto, string fecha)
         {
             var tipoDeMovimientoParameter = tipoDeMovimiento != null ?
                 new ObjectParameter("TipoDeMovimiento", tipoDeMovimiento) :
@@ -392,10 +400,14 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("Monto", monto) :
                 new ObjectParameter("Monto", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_insertar_Result>("Transacciones_insertar", tipoDeMovimientoParameter, id_TipoDocumentoParameter, numeroDeDocumentoParameter, id_ClienteParameter, montoParameter);
+            var fechaParameter = fecha != null ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Transacciones_insertar_Result>("Transacciones_insertar", tipoDeMovimientoParameter, id_TipoDocumentoParameter, numeroDeDocumentoParameter, id_ClienteParameter, montoParameter, fechaParameter);
         }
     
-        public virtual int Transaciones_Paging_Consulta(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, Nullable<int> id_Transaccion, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, string fecha_Desde, string fecha_Hasta)
+        public virtual int Transaciones_Paging_Consulta(Nullable<int> pageIndex, Nullable<int> pageSize, string orderBy0, Nullable<bool> orderByDirection0, string tipoDeMovimiento, Nullable<int> id_TipoDocumento, string fecha_Desde, string fecha_Hasta)
         {
             var pageIndexParameter = pageIndex.HasValue ?
                 new ObjectParameter("PageIndex", pageIndex) :
@@ -413,10 +425,6 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("orderByDirection0", orderByDirection0) :
                 new ObjectParameter("orderByDirection0", typeof(bool));
     
-            var id_TransaccionParameter = id_Transaccion.HasValue ?
-                new ObjectParameter("id_Transaccion", id_Transaccion) :
-                new ObjectParameter("id_Transaccion", typeof(int));
-    
             var tipoDeMovimientoParameter = tipoDeMovimiento != null ?
                 new ObjectParameter("TipoDeMovimiento", tipoDeMovimiento) :
                 new ObjectParameter("TipoDeMovimiento", typeof(string));
@@ -433,7 +441,20 @@ namespace API_CuentasxCobrar
                 new ObjectParameter("Fecha_Hasta", fecha_Hasta) :
                 new ObjectParameter("Fecha_Hasta", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transaciones_Paging_Consulta", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, id_TransaccionParameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, fecha_DesdeParameter, fecha_HastaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transaciones_Paging_Consulta", pageIndexParameter, pageSizeParameter, orderBy0Parameter, orderByDirection0Parameter, tipoDeMovimientoParameter, id_TipoDocumentoParameter, fecha_DesdeParameter, fecha_HastaParameter);
+        }
+    
+        public virtual int Usuario_Login(string username, string contrasena, ObjectParameter logeado, ObjectParameter mensaje)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usuario_Login", usernameParameter, contrasenaParameter, logeado, mensaje);
         }
     }
 }

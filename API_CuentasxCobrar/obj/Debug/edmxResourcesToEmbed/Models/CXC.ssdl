@@ -50,7 +50,6 @@
   <!--Errors Found During Generation:
 warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Usuario">
-          <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="contrasena" Type="varchar" MaxLength="25" />
         </EntityType>-->
@@ -78,6 +77,51 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_AsientosContables_IdCliente">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="AsientosContables" Type="Self.AsientosContables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id_Cliente" />
+      </Principal>
+      <Dependent Role="AsientosContables">
+        <PropertyRef Name="id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AsientosContables_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Asiento" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AsientosContables_Edita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Asiento" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="id_Cliente" Type="int" Mode="In" />
+    <Parameter Name="Cuenta" Type="varchar" Mode="In" />
+    <Parameter Name="TipoDeMovimiento" Type="char" Mode="In" />
+    <Parameter Name="Monto" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="AsientosContables_Elimina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Asiento" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AsientosContables_insertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="id_Cliente" Type="int" Mode="In" />
+    <Parameter Name="Cuenta" Type="varchar" Mode="In" />
+    <Parameter Name="TipoDeMovumiento" Type="char" Mode="In" />
+    <Parameter Name="Monto" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="AsientosContables_Paging_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="orderBy0" Type="varchar" Mode="In" />
+    <Parameter Name="orderByDirection0" Type="bit" Mode="In" />
+    <Parameter Name="id_Asiento" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="TipoDeMovimiento" Type="char" Mode="In" />
+    <Parameter Name="id_Cliente" Type="int" Mode="In" />
+    <Parameter Name="Fecha_Desde" Type="varchar" Mode="In" />
+    <Parameter Name="Fecha_Hasta" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="Clientes_consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_Cliente" Type="int" Mode="In" />
   </Function>
@@ -103,6 +147,7 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
     <Parameter Name="id_Cliente" Type="int" Mode="In" />
     <Parameter Name="Nombre" Type="varchar" Mode="In" />
     <Parameter Name="Cedula" Type="varchar" Mode="In" />
+    <Parameter Name="LimiteDeCredito" Type="int" Mode="In" />
   </Function>
   <Function Name="TipoDocumentos_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_TipoDocumento" Type="int" Mode="In" />
@@ -130,6 +175,7 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
   </Function>
   <Function Name="Transacciones_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_Transaccion" Type="int" Mode="In" />
+    <Parameter Name="id_Clientes" Type="int" Mode="In" />
   </Function>
   <Function Name="Transacciones_Edita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_Transaccion" Type="int" Mode="In" />
@@ -138,6 +184,7 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
     <Parameter Name="NumeroDeDocumento" Type="int" Mode="In" />
     <Parameter Name="id_Cliente" Type="int" Mode="In" />
     <Parameter Name="Monto" Type="numeric" Mode="In" />
+    <Parameter Name="Fecha" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Transacciones_Elimina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id_Transaccion" Type="int" Mode="In" />
@@ -148,6 +195,7 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
     <Parameter Name="NumeroDeDocumento" Type="int" Mode="In" />
     <Parameter Name="id_Cliente" Type="int" Mode="In" />
     <Parameter Name="Monto" Type="numeric" Mode="In" />
+    <Parameter Name="Fecha" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Transaciones_Paging_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PageIndex" Type="int" Mode="In" />
@@ -177,6 +225,10 @@ warning 6013: The table/view 'CXC.dbo.Usuario' does not have a primary key defin
     <AssociationSet Name="FK__Transacci__id_Ti__286302EC" Association="Self.FK__Transacci__id_Ti__286302EC">
       <End Role="TipoDocumentos" EntitySet="TipoDocumentos" />
       <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AsientosContables_IdCliente" Association="Self.FK_AsientosContables_IdCliente">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="AsientosContables" EntitySet="AsientosContables" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

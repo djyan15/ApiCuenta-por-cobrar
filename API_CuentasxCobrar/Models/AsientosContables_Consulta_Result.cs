@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     
-    public partial class Transacciones_insertar_Result
+    public partial class AsientosContables_Consulta_Result
     {
-        public string TipoDeMovimiento { get; set; }
+        public int id_Asiento { get; set; }
         public string Descripcion { get; set; }
-        public int NumeroDeDocumento { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public string Nombre { get; set; }
+        public int id_Cliente { get; set; }
+        public string Cuenta { get; set; }
+        public string TipoDeMovimiento { get; set; }
         public decimal Monto { get; set; }
     }
 }

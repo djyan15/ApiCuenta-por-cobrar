@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     
-    public partial class TipoDocumentos_Consulta_Result
+    public partial class TipoDocumentos_Inserta_Result
     {
         public string Descripcion { get; set; }
         public string CuentaContable { get; set; }

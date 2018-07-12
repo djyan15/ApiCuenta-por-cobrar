@@ -7,30 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API_CuentasxCobrar
+namespace API_CuentasxCobrar.Models
 {
     using System;
     using System.Collections.Generic;
-    public class Clientes
-    {
-        public int? PageIndex { get; set; }
-        public int? PageSize { get; set; }
-        public string orderBy0 { get; set; }
-        public byte orderByDirection0 { get; set; }
-
-
-        public int? id_Cliente { get; set; }
-        public string Nombre { get; set; }
-        public string Cedula { get; set; }
-        public decimal LimiteDeCredito { get; set; }
-        public string Estado { get; set; }
-        public string Fecha { get; set; }
-
-        public int Linea { get; set; }
-        public int Ultima_Linea { get; set; }
-        public int Cantidad_Registros { get; set; }
-
-    }
+    
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

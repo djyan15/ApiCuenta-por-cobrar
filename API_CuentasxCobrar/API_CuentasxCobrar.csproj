@@ -246,103 +246,106 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="AsientosContable.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AsientosContables_Consulta_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AsientosContables_Edita_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AsientosContables_insertar_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Cliente.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Clientes_consulta_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Clientes_Edita_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Clientes_insertar_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\TransaccionesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="CXCmodels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CXCmodels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CXCmodels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CXCmodels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CXCmodels.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AsientosContable.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AsientosContables_Consulta_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AsientosContables_Edita_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AsientosContables_insertar_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Clientes_consulta_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clientes_Edita_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clientes_insertar_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CXC.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CXC.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CXC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CXC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CXC.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\TipoDocumento.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDocumentos.cs" />
+    <Compile Include="Models\TipoDocumentos_Consulta_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDocumentos_edita_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDocumentos_Inserta_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaccione.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transacciones.cs" />
+    <Compile Include="Models\Transacciones_Consulta_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transacciones_Edita_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transacciones_insertar_Result.cs">
+      <DependentUpon>CXC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="TipoDocumento.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TipoDocumentos_Consulta_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TipoDocumentos_edita_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TipoDocumentos_Inserta_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transaccione.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transacciones_Consulta_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transacciones_Edita_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transacciones_insertar_Result.cs">
-      <DependentUpon>CXCmodels.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="CXCmodels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CXCmodels.edmx</DependentUpon>
-      <LastGenOutput>CXCmodels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CXCmodels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CXCmodels.edmx</DependentUpon>
-      <LastGenOutput>CXCmodels.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\CXC.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CXC.edmx</DependentUpon>
+      <LastGenOutput>CXC.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CXC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CXC.edmx</DependentUpon>
+      <LastGenOutput>CXC.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -369,12 +372,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="CXCmodels.edmx">
+    <EntityDeploy Include="Models\CXC.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CXCmodels.Designer.cs</LastGenOutput>
+      <LastGenOutput>CXC.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="CXCmodels.edmx.diagram">
-      <DependentUpon>CXCmodels.edmx</DependentUpon>
+    <Content Include="Models\CXC.edmx.diagram">
+      <DependentUpon>CXC.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

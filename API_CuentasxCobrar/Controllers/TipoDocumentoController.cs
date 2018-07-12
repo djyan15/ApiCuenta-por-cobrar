@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API_CuentasxCobrar.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace API_CuentasxCobrar.Controllers
 {
     public class TipoDocumentoController : ApiController
     {
-        private readonly CXCEntities5 db = new CXCEntities5();
+        private readonly CXCEntities6 db = new CXCEntities6();
 
         [Route("TipDoc/GetTipDoc")]
         public JsonResult<List<TipoDocumentos>> GetTipoDocumentos([FromUri]TipoDocumentos TD)
